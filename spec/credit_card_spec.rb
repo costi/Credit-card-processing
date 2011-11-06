@@ -17,6 +17,17 @@ describe CreditCard do
     cc.number.should == '4111111111111111'
   end
 
+  it 'has a credit limit' do
+    cc.credit_limit = 2000
+    cc.credit_limit.should == 2000
+  end
+
+  it 'requires a credit limit' do
+    cc = CreditCard.new
+    cc.valid?
+    cc.errors[:credit_limit].should include('Credit limit must not be blank')
+  end
+
   describe 'number' do
     it 'is required' do
       cc.valid?

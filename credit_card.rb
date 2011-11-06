@@ -10,6 +10,11 @@ class CreditCard
   #I would use a person object if a person could have multiple credit cards.
   #Then, the current transaction spec "Charge Tom $500" will have to 
   #specify a card or we can have a default card if we don't specify the card to charge.
+
+  property :credit_limit,       Decimal, :required => true 
+  # floats give surprising results when using them as money 
+  # so it's always better to use decimal or money
+  
   
   validates_with_method :number, :method => :luhn_valid?
 
