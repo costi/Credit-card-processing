@@ -4,10 +4,10 @@ require File.join(File.dirname(__FILE__), 'luhn')
 class CreditCard
   include DataMapper::Resource
   property :id,          Serial
-  property :number,      String
+  property :number,      String, :required => true
   property :person,      String, :required => true
-  #I could move person to another class, but it's not needed for these requirements
-  #I could use a person object if a person could have multiple credit cards.
+  #I could move person to another class, but it's not needed for the current requirements.
+  #I would use a person object if a person could have multiple credit cards.
   #Then, the current transaction spec "Charge Tom $500" will have to 
   #specify a card or we can have a default card if we don't specify the card to charge.
   

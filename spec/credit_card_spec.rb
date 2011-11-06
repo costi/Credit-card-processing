@@ -18,6 +18,11 @@ describe CreditCard do
   end
 
   describe 'number' do
+    it 'is required' do
+      cc.valid?
+      cc.errors[:number].should include('Number must not be blank')
+    end
+
     it 'fails the luhn test for 49927398717 (from rosettacode)' do
       cc.number = '49927398717'
       cc.valid?

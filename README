@@ -5,3 +5,7 @@ Because I don't have to run migrations, and it has object identity.
 run it with 
 $ autotest --style rspec2 
 
+=== Database is sqlite3 in memory
+It's in memory because it's really easy to work with, and fast for development.
+If you work with large sets of data, change it to file.
+
