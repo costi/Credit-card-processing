@@ -1,0 +1,7 @@
+=== Why Datamapper
+Because I don't have to run migrations, and it has object identity.
+
+=== Autotest
+run it with 
+$ autotest --style rspec2 
+
