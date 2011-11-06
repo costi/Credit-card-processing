@@ -1,3 +1,4 @@
+require File.join(File.dirname(__FILE__), '..', 'environment')
 RSpec.configure do |config|
   # Use color in STDOUT
   config.color_enabled = true

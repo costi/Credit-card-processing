@@ -1,10 +1,11 @@
 require File.join(File.dirname(__FILE__), 'spec_helper')
 require File.join(File.dirname(__FILE__), '..', 'transaction')
-describe Transaction do
-  let(:transaction){Transaction.new}
-  it 'has an amount' do
-    transaction.amount = 200
-    transaction.amount.should == 200
+require File.join('transaction', 'shared_examples')
+module Transactions
+
+  describe Transaction do
+    let(:transaction){Transaction.new}
+    it_behaves_like "a transaction"
   end
   
 end
