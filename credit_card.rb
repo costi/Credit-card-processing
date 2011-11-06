@@ -24,4 +24,8 @@ class CreditCard
   def luhn_valid?
     Luhn.valid?(number) ? true : [false, 'needs to be luhn10 valid']
   end
+
+  def balance
+    0
+  end
 end

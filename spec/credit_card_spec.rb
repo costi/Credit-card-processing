@@ -23,10 +23,19 @@ describe CreditCard do
   end
 
   it 'requires a credit limit' do
-    cc = CreditCard.new
     cc.valid?
     cc.errors[:credit_limit].should include('Credit limit must not be blank')
   end
+
+  describe 'with valid attributes' do
+
+    let(:cc){CreditCard.new(:number => '4111111111111111', :person => 'Tom', :credit_limit => 2000)}
+
+    it 'has a starting balance of zero' do
+      cc.balance.should == 0
+    end
+  end
+
 
   describe 'number' do
     it 'is required' do
