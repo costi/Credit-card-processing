@@ -1,11 +1,13 @@
 require File.join(File.dirname(__FILE__), 'environment')
-require File.join(File.dirname(__FILE__), 'luhn')
+require File.join(Root, 'luhn')
 
 class CreditCard
   include DataMapper::Resource
   property :id,          Serial
   property :number,      String, :required => true
-  property :person,      String, :required => true
+  # basically the person's name is the unique identifier of the card in the batch
+  # we find the card by person's name
+  property :person,      String, :required => true, :unique => true 
   has n, :transactions, 'Transactions::Transaction'
   has n, :charges, 'Transactions::Charge'
   has n, :credits, 'Transactions::Credit'

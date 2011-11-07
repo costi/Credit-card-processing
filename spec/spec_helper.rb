@@ -1,4 +1,6 @@
 require File.join(File.dirname(__FILE__), '..', 'environment')
+require 'database_cleaner'
+
 RSpec.configure do |config|
   # Use color in STDOUT
   config.color_enabled = true
@@ -8,6 +10,15 @@ RSpec.configure do |config|
   config.before(:suite) { 
     DataMapper.finalize
     DataMapper.auto_migrate! 
+    DatabaseCleaner.strategy = :transaction
+    #DatabaseCleaner.clean_with(:truncation)
   }
 
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
