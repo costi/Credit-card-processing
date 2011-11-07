@@ -12,12 +12,13 @@ describe Batch do
 
   it 'parses charge line' do
     result = batch.parse_charge_line 'Charge Tom $500'
-    result.should == {:person => 'Tom', :amount => '500'}
+    result.should == {:person => 'Tom', :amount => 500}
   end
 
   it 'parses credit line' do
     result = batch.parse_credit_line 'Credit Lisa $100'
-    result.should == {:person => 'Lisa', :amount => '100'}
+    result.should == {:person => 'Lisa', :amount => 100}
+    # we assume amounts are integers by specs
   end
 
   it 'dispatches add credit card line to the add credit line parser' do
@@ -33,6 +34,15 @@ describe Batch do
   it 'dispatches credit line to credit line parser' do
     batch.should_receive(:parse_credit_line).with(credit_line).and_return({:person => 'Lisa', :amount => '100'})
     batch.process_line(credit_line)
+  end
+
+  it 'sorts the summary by person name' do
+    cc_attr = {:balance => 30, :luhn_valid? => true}
+    batch.stub(:credit_cards).and_return([
+      double(cc_attr.merge(:person => 'Quincy')),
+      double(cc_attr.merge(:person => 'Adam')),
+      double(cc_attr.merge(:person => 'Costi'))])
+    batch.summary.map{|line| line[0]}.should == %w(Adam Costi Quincy)
   end
 
   it 'creates a credit card from a credit card line'

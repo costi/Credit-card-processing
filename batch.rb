@@ -7,6 +7,8 @@ class Batch
     @file_handle = file_handle
   end
 
+  attr_reader :credit_cards
+
   # Add Tom 4111111111111111 $1000
   def parse_credit_card_line(line)
     if matchdata = line.match(/^Add (\w+) (\d{1,19}) \$(\d+)$/)
@@ -56,7 +58,7 @@ class Batch
   end
 
   def summary
-    @credit_cards.map{|cc| [cc.person, cc.luhn_valid? ? cc.balance.to_s : 'error']}
+    credit_cards.map{|cc| [cc.person, cc.luhn_valid? ? cc.balance.to_s : 'error']}
   end
 
 
