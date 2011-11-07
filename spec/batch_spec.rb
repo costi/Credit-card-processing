@@ -1,13 +1,13 @@
 require File.join(File.dirname(__FILE__), 'spec_helper')
 describe Batch do
-  let(:batch){Batch.new}
+  let(:batch){Batch.new(double("File handle"))}
   let(:credit_card_line){'Add Tom 4111111111111111 $1000'}
   let(:charge_line){'Charge Tom $500'}
   let(:credit_line){'Credit Lisa $100'}
 
   it 'parses add credit card line' do
     result = batch.parse_credit_card_line( credit_card_line )
-    result.should == {:person => 'Tom', :number => '4111111111111111', :amount => '1000'}
+    result.should == {:person => 'Tom', :number => '4111111111111111', :credit_limit => '1000'}
   end
 
   it 'parses charge line' do
@@ -34,7 +34,6 @@ describe Batch do
     batch.should_receive(:parse_credit_line).with(credit_line).and_return({:person => 'Lisa', :amount => '100'})
     batch.process_line(credit_line)
   end
-
 
   it 'creates a credit card from a credit card line'
   it 'creates a charge from a charge line'
