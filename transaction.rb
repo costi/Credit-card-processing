@@ -5,5 +5,6 @@ module Transactions  # I want all my payment transaction logic in one namespace
     property :id,         Serial
     property :amount,     Decimal
     property :type,       Discriminator
+    belongs_to :credit_card # defaults to :required => true
   end
 end

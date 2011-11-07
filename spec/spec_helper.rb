@@ -5,6 +5,9 @@ RSpec.configure do |config|
   # Use the specified formatter
   config.formatter = :documentation # :progress, :html, :textmate
   # ctrl+c in autotest to run the migrations again
-  config.before(:suite) { DataMapper.auto_migrate! }
+  config.before(:suite) { 
+    DataMapper.finalize
+    DataMapper.auto_migrate! 
+  }
 
 end
