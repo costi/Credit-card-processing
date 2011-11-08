@@ -11,7 +11,6 @@ RSpec.configure do |config|
     DataMapper.finalize
     DataMapper.auto_migrate! 
     DatabaseCleaner.strategy = :transaction
-    #DatabaseCleaner.clean_with(:truncation)
   }
 
   config.before(:each) do

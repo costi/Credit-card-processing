@@ -44,7 +44,4 @@ describe Batch do
     batch.summary_credit_cards.map{|line| line[0]}.should == %w(Adam Costi Quincy)
   end
 
-  it 'creates a credit card from a credit card line'
-  it 'creates a charge from a charge line'
-  it 'creates a debit from a debit line'
 end
