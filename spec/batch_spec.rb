@@ -37,12 +37,11 @@ describe Batch do
   end
 
   it 'sorts the summary by person name' do
-    cc_attr = {:balance => 30, :luhn_valid? => true}
     batch.stub(:credit_cards).and_return([
-      double(cc_attr.merge(:person => 'Quincy')),
-      double(cc_attr.merge(:person => 'Adam')),
-      double(cc_attr.merge(:person => 'Costi'))])
-    batch.summary.map{|line| line[0]}.should == %w(Adam Costi Quincy)
+      CreditCard.new(:person => 'Quincy'),
+      CreditCard.new(:person => 'Adam'),
+      CreditCard.new(:person => 'Costi')])
+    batch.summary_credit_cards.map{|line| line[0]}.should == %w(Adam Costi Quincy)
   end
 
   it 'creates a credit card from a credit card line'

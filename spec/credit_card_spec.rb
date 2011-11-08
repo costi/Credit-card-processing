@@ -27,6 +27,12 @@ describe CreditCard do
     cc.errors[:credit_limit].should include('Credit limit must not be blank')
   end
 
+  it 'sorts by person name alphabetically' do
+    adam = CreditCard.new(:person => "Adam")
+    tom = CreditCard.new(:person => 'Tom')
+    [tom, adam].sort.should == [adam, tom]
+  end
+
   describe 'with valid attributes' do
 
     let(:cc){CreditCard.new(:number => '4111111111111111', :person => 'Tom', :credit_limit => 2000)}

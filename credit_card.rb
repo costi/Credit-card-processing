@@ -55,13 +55,20 @@ class CreditCard
       c
     end
   end
-
+  
+  #why do I do new and then save instead of create?
+  #see comment on charge() - seems like it's a bug in datamapper
   def credit(amount)
     if luhn_valid?
       c = credits.new(:amount => amount)
       c.save
       c
     end
+  end
+
+  # sort credit cards by person name
+  def <=>(other)
+    self.person <=> other.person
   end
 
 

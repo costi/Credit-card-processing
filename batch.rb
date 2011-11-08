@@ -57,9 +57,21 @@ class Batch
     end
   end
 
-  def summary
-    credit_cards.map{|cc| [cc.person, cc.luhn_valid? ? cc.balance.to_s : 'error']}
+  def summary_credit_cards
+    # all amounts are in whole dollars so I can safely use to_i
+    credit_cards.sort.map{|cc| [cc.person, cc.luhn_valid? ? "$#{cc.balance.to_i}" : 'error']}
   end
 
+  def print_summary
+    text_printer($stdout)
+  end
+
+  # if we will need have different outputtters, 
+  # create separate classes for each one
+  def text_printer(file_handle)
+    summary_credit_cards.each do |cc|
+      file_handle.puts("#{cc[0]}: #{cc[1]}")
+    end
+  end
 
 end
