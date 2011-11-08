@@ -46,6 +46,12 @@ they should have. Saving of invalid records is prevented though.
 I have a couple of tests in  spec/transaction/shared_examples.rb to document the
 bug and to prove that the save still fails on invalid records.
 
+=== Other known issues
+Race condition in overlimit calculation - must fix in SQL.
+  Let me know if you want to see a solution.
+Not complete code coverage in batch.rb
+  I went on a code spike and didn't go back to build tests for it
+
 === Autotest
 run it with 
 $ bundle exec autotest --style rspec2 
