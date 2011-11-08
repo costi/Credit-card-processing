@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
-CC_ENV='test'
+CC_ENV='development'
 require File.join(File.dirname(__FILE__), 'environment')
-DataMapper.auto_migrate! 
-batch = Batch.new(File.open(File.join(Root, 'test_input.txt')))
+
+DataMapper.auto_upgrade!
+batch = Batch.new(ARGF) #Nifty perl-ish ARGF
 batch.process_file
 batch.print_summary

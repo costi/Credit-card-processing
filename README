@@ -1,11 +1,58 @@
+=== How to use
+1. Try test.run.rb with no arguments. It will run in the "test" environment
+and it will process input.txt by default with a fresh database each time.
+
+./batch_run.rb < test_input.txt
+./initdb.rb # run initdb.rb between runs to wipe out the database
+cat test_input.txt | ./batch_run.rb 
+./initdb.rb
+./batch_run.rb test_input.txt 
+./initdb.rb
+
+ Or with no arguments, and type the input from the keyboard:
+/batch_run.rb
+Add Tom 4111111111111111 $1000
+Add Lisa 5454545454545454 $3000
+Charge Tom $800
+Charge Lisa $7
+Charge Tom $200 
+Charge Tom $100
+CTRL+D
+Lisa: $7
+Tom: $1000
+
+=== Programming language
+Ruby - it's my favourite language. Fast to develop, easy to debug, 
+and with a vibrant community and projects.
+
+=== Testing framework
+Rspec - what is there to choose? Test::Unit?
+
+=== RVM and bundler
+I'm running on 1.9.2 with rvm. 
+I created the braintree gemset, which might conflict with your gemsets names.
+You should prefix all commands with bundle exec if you are not using rvm and 
+a clean gemset.
+
 === Why Datamapper
 Because I don't have to run migrations, and it has object identity.
+I also wanted to experiment with DataMapper.
+
+I encountered a bug on datamapper while developing with it and submitted
+on the github issue tracker for dm-validations
+https://github.com/datamapper/dm-validations/issues/16#issuecomment-2648857
+This bug causes the validations to come up with no errors on child classes when
+they should have. Saving of invalid records is prevented though.
+I have a couple of tests in  spec/transaction/shared_examples.rb to document the
+bug and to prove that the save still fails on invalid records.
 
 === Autotest
 run it with 
-$ autotest --style rspec2 
+$ bundle exec autotest --style rspec2 
+I like specdoc format and colors, so they are enabled in the Rspec configure block.
 
-=== Database is sqlite3 in memory
-It's in memory because it's really easy to work with, and fast for development.
-If you work with large sets of data, change it to file.
+=== Database is sqlite3
+The databases for the test and development environment are in the
+test directory (partly because I don't want a write to the database to trigger
+another autospec run and partly because they are really temporary).
 
