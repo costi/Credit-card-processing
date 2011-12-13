@@ -9,17 +9,25 @@ cat test_input.txt | ./batch_run.rb
 ./batch_run.rb test_input.txt 
 ./initdb.rb
 
- Or with no arguments, and type the input from the keyboard:
-/batch_run.rb
-Add Tom 4111111111111111 $1000
-Add Lisa 5454545454545454 $3000
-Charge Tom $800
-Charge Lisa $7
-Charge Tom $200 
-Charge Tom $100
+Usage from the keyboard.
+1. create db: 
+  ./initd.rb
+2. start batch import process:
+   ./batch_run.rb
+Add Alice 4111111111111111 $2000
+Add Bob 5454545454545454 $4000
+Charge Alice $800
+Charge Alice $7
+Charge Bob $200
+Charge Bob $100
 CTRL+D
-Lisa: $7
-Tom: $1000
+Alice: $807
+Bob: $300
+
+=== Input rules
+1. Space delimited values
+2. credit cards should be up to 19 characters, all numeric
+3. Amounts should be prefixed with $ and and integers.
 
 === Programming language
 Ruby - it's my favourite language. Fast to develop, easy to debug, 
@@ -30,7 +38,6 @@ Rspec - what is there to choose? Test::Unit?
 
 === RVM and bundler
 I'm running on 1.9.2 with rvm. 
-I created the braintree gemset, which might conflict with your gemsets names.
 You should prefix all commands with bundle exec if you are not using rvm and 
 a clean gemset.
 

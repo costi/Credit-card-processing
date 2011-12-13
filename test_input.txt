@@ -1,8 +1,8 @@
-Add Tom 4111111111111111 $1000
-Add Lisa 5454545454545454 $3000
-Add Quincy 1234567890123456 $2000
-Charge Tom $500
-Charge Tom $800
-Charge Lisa $7
-Credit Lisa $100
-Credit Quincy $200
+Add Bob 4111111111111111 $1000
+Add Alice 5454545454545454 $3000
+Add Perry 1234567890123456 $2000
+Charge Bob $500
+Charge Bob $800
+Charge Alice $7
+Credit Alice $100
+Credit Perry $200
